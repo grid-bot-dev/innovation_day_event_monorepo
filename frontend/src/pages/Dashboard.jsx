@@ -209,8 +209,8 @@ const Dashboard = () => {
   const createProductPerformanceChart = () => {
     const data = [
       {
-        y: productPerformance[0].y,
-        x: productPerformance[0].x,
+        y: productPerformance[0].x,
+        x: productPerformance[0].y,
         type: "bar",
         orientation: "h",
       },
