@@ -1,0 +1,68 @@
+from fastapi import FastAPI
+from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
+import backend_logic
+
+
+app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all HTTP methods
+    allow_headers=["*"],  # Allow all headers
+)
+
+
+# @app.get("/")
+# async def root():
+#     return {"message": "Welcome to the P&G CDP Dashboard API"}
+
+
+@app.get("/api/kpis")
+async def api_get_kpis():
+    return await backend_logic.get_kpis()
+
+
+@app.get("/api/customer_segments")
+async def api_get_customer_segments():
+    return JSONResponse(content=await backend_logic.get_customer_segments())
+
+
+@app.get("/api/monthly_revenue")
+async def api_get_monthly_revenue():
+    return JSONResponse(content=await backend_logic.get_monthly_revenue())
+
+
+@app.get("/api/top_customers")
+async def api_get_top_customers():
+    return await backend_logic.get_top_customers()
+
+
+@app.get("/api/product_category_performance")
+async def api_get_product_category_performance():
+    return JSONResponse(content=await backend_logic.get_product_category_performance())
+
+
+@app.get("/api/customer_satisfaction")
+async def api_get_customer_satisfaction():
+    # return JSONResponse( message = "successfully conected")
+    return JSONResponse(content=await backend_logic.get_customer_satisfaction())
+
+
+@app.get("/api/churn_risk")
+async def api_get_churn_risk():
+    return JSONResponse(content=await backend_logic.get_churn_risk())
+
+
+@app.get("/api/rfm_segmentation")
+async def api_get_rfm_segmentation():
+    return JSONResponse(content=await backend_logic.get_rfm_segmentation())
+
+
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run(app, host="0.0.0.0", port=8000)
+	
