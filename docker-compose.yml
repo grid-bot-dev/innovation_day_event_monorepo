@@ -1,0 +1,29 @@
+version: "3"
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80" # Expose port 80 on the host
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    expose:
+      - "8000" # Only expose internally, not to host
+    networks:
+      - app-network
+    volumes:
+      - /home/msingh/.config:/root/.config
+
+networks:
+  app-network:
+    driver: bridge
