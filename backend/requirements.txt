@@ -1,0 +1,17 @@
+fastapi
+sqlalchemy
+cloud-sql-python-connector[pg8000]
+cloud-sql-python-connector[asyncpg]
+python-dotenv
+pandas
+plotly
+asyncpg
+uvicorn
+greenlet
+asyncio
+colorama
+pytest
+pytest-asyncio
+pytest-cov
+pytest-html
+pytest-metadata
